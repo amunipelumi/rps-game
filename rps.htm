@@ -19,20 +19,31 @@
     <button onclick="gameResult(myMove = 'scissors');">
       Scissors
     </button>
-    <button onclick="
-      localStorage.removeItem('outcomes');
-      outcomes = {wins: 0, losses: 0, ties: 0};
-      ">
+    <p class="js-result"></p>
+    <p class="js-moves"></p>
+    <p class="js-scores"></p>
+    <button onclick="resetScores();">
       Reset Scores
     </button>
   </p>
   <script>
+    // 
     // Below are the JavaScript logic for the game
     let outcomes = JSON.parse(localStorage.getItem('outcomes')) || {
       wins: 0,
       losses: 0,
       ties: 0
     };
+
+    const resultElem = document.querySelector('.js-result');
+    const scoresElem = document.querySelector('.js-scores');
+    const movesElem = document.querySelector('.js-moves');
+
+    // Handle constant display of scores
+    function updateScore(){
+      scoresElem.innerHTML = `Wins: ${outcomes.wins}. Losses: ${outcomes.losses}. Ties: ${outcomes.ties}.`;
+    }
+    updateScore();
 
     // Function that randomly picks a move for computer
     function pickCompMove(){
@@ -48,6 +59,7 @@
       }
       return computerMove;
     }
+
     // Function to compute game result
     function gameResult(myMove){
       const computerMove = pickCompMove();
@@ -57,22 +69,34 @@
         result = 'There was a tie';
         outcomes.ties += 1;
       } else if ((computerMove === 'rock') && (myMove === 'paper')){
-        result = 'You won, computer lost';
+        result = 'You won';
         outcomes.wins += 1;
       } else if ((computerMove === 'paper') && (myMove === 'scissors')){
-        result = 'You won, computer lost';
+        result = 'You won';
         outcomes.wins += 1;
       } else if ((computerMove === 'scissors') && (myMove === 'rock')){
-        result = 'You won, computer lost';
+        result = 'You won';
         outcomes.wins += 1;
       } else {
-        result = 'You lost, computer won';
-        outcomes.losses += 1
+        result = 'You lost';
+        outcomes.losses += 1;
       }
-      // Save game scores and display results
-      localStorage.setItem('outcomes', JSON.stringify(outcomes))
-      alert(`You picked ${myMove}, computer picked ${computerMove}.\n${result}.\nWins: ${outcomes.wins}, Losses: ${outcomes.losses}, Ties: ${outcomes.ties}`);
+
+      // Save game scores and display outcomes
+      localStorage.setItem('outcomes', JSON.stringify(outcomes));
+      resultElem.innerHTML = `${result}.`;
+      movesElem.innerHTML = `You picked ${myMove} - Computer picked ${computerMove}`;
+      updateScore();
     }
+
+    // Clear game memory
+    function resetScores(){
+      localStorage.removeItem('outcomes');
+      outcomes = {wins: 0, losses: 0, ties: 0};
+      updateScore();
+    }
+    // 
   </script>
 </body>
 </html>
+   
