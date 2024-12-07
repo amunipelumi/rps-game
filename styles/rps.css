@@ -1,0 +1,59 @@
+/* Styles */
+body{
+  font-family: Arial;
+  background-color: black;
+}
+
+div{
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  /* margin-top: 50px; */
+  margin-bottom: 10px;
+  background-color: rgb(31, 28, 28);
+}
+
+.rps-title{
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 70px;
+}
+
+.move-button{
+  background-color: transparent;
+  border: solid white 3px;
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.moves-img{
+  /* background-color: black; */
+  height: 50px;
+}
+
+.moves-result{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.moves{
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.scores{
+  font-weight: bold;
+}
+
+.reset-scores{
+  border: none;
+  padding: 8px 10px;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
