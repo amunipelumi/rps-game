@@ -50,7 +50,8 @@ div{
   font-weight: bold;
 }
 
-.reset-scores{
+.reset-scores,
+.auto-play-button{
   border: none;
   padding: 8px 10px;
   font-size: 15px;

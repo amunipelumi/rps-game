@@ -13,6 +13,7 @@
     </p>
     <p>
       <p class="js-result moves-result"></p>
+      <p class="js-moves moves"></p>
       <button 
         onclick="gameResult(myMove = 'rock');"
         class="move-button"
@@ -43,13 +44,18 @@
           alt="scissors.png"
         >
       </button>
-      <p class="js-moves moves"></p>
       <p class="js-scores scores"></p>
       <button
         class="reset-scores" 
         onclick="resetScores();"
         >
         Reset Scores
+      </button>
+      <button
+        class="auto-play-button js-auto"
+        onclick="autoPlay();"
+        >
+        Auto Play
       </button>
     </p>
   </div>

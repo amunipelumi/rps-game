@@ -76,3 +76,24 @@ function resetScores(){
   outcomes = {wins: 0, losses: 0, ties: 0};
   updateScore();
 }
+
+// Auto play game
+function autoPlayGame(){
+  const randomMove = pickCompMove();
+  gameResult(randomMove);
+}
+
+let autoPlaying = true;
+let intervalId;
+
+function autoPlay(){
+  if (autoPlaying){
+    intervalId = setInterval(autoPlayGame, 1000);
+    document.querySelector('.js-auto').innerHTML = 'Stop Play';
+    autoPlaying = false;
+  } else {
+    clearInterval(intervalId);
+    document.querySelector('.js-auto').innerHTML = 'Auto Play';
+    autoPlaying = true;
+  }
+}
