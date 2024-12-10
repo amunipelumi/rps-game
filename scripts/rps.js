@@ -1,4 +1,4 @@
-// Game logic and control
+// JavaScript logic for the RPS game
 let outcomes = JSON.parse(localStorage.getItem('outcomes')) || {
   wins: 0,
   losses: 0,
@@ -10,9 +10,9 @@ const scoresElem = document.querySelector('.js-scores');
 const movesElem = document.querySelector('.js-moves');
 
 // Handle constant display of scores
-function updateScore(){
+const updateScore = () => {
   scoresElem.innerHTML = `Wins: ${outcomes.wins}. Losses: ${outcomes.losses}. Ties: ${outcomes.ties}.`;
-}
+};
 updateScore();
 
 // Function that randomly picks a move for computer
@@ -70,18 +70,45 @@ function gameResult(myMove){
   updateScore();
 }
 
+// My moves event listeners
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'r'){
+    gameResult('rock');
+  } else if (event.key === 'p'){
+    gameResult('paper');
+  } else if (event.key === 's'){
+    gameResult('scissors');
+  }
+});
+
+document.querySelector('.js-rock').addEventListener('click', () => {
+  gameResult('rock');
+});
+
+document.querySelector('.js-paper').addEventListener('click', () => {
+  gameResult('paper');
+});
+
+document.querySelector('.js-scissors').addEventListener('click', () => {
+  gameResult('scissors');
+});
+
 // Clear game memory
-function resetScores(){
+const resetScores = () => {
   localStorage.removeItem('outcomes');
   outcomes = {wins: 0, losses: 0, ties: 0};
   updateScore();
-}
+};
+
+document.querySelector('.js-reset').addEventListener('click', () => {
+  resetScores();
+});
 
 // Auto play game
-function autoPlayGame(){
+const autoPlayGame = () => {
   const randomMove = pickCompMove();
   gameResult(randomMove);
-}
+};
 
 let autoPlaying = true;
 let intervalId;
@@ -96,4 +123,9 @@ function autoPlay(){
     document.querySelector('.js-auto').innerHTML = 'Auto Play';
     autoPlaying = true;
   }
+  // console.log(autoPlaying);
 }
+
+document.querySelector('.js-auto-play').addEventListener('click', () => {
+  autoPlay();
+});
